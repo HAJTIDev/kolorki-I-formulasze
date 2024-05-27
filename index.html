@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Formularz</title>
+</head>
+<body>
+    <div id="container">
+        <section id="fav">
+            <h3>Wybierz kolor, który lubisz: </h3>
+            <input type="radio" name="fav" value="czerwony">
+            <label for="fav">czerwony</label><br/>
+            <input type="radio" name="fav" value="zielony">
+            <label for="fav">zielony</label><br/>
+            <input type="radio" name="fav" value="żółty"> 
+            <label for="fav">żółty</label><br/>
+            <input type="radio" name="fav" value="niebieski">
+            <label for="fav">niebieski</label><br/>
+        </section>
+        <section id="bad">
+            <h3>Wybierz kolor, którego nie lubisz</h3>
+            <input type="radio" name="bad" value="białego">
+            <label for="bad">biały</label><br/>
+            <input type="radio" name="bad" value="czarnego">
+            <label for="bad">czarny</label><br/>
+            <input type="radio" name="bad" value="szarego">
+            <label for="bad">szary</label><br/>
+        </section>
+        <div style="clear:both"></div>
+
+        <input type="checkbox" name="other" id="other">
+        <label for="other">Uwielbiam jeszcze inne kolory</label>
+        <button id="send">Prześlij informacje</button>
+        <button id="clear">Wyczyść formularz</button>
+        <div style="clear:both"></div>
+        <div id="result"></div>
+    </div>
+    <script>
+        document.querySelector("#send").addEventListener("click", send, false);
+        document.querySelector("#clear").addEventListener("click", erase, false);
+
+        function send() {
+            let fav = document.querySelector('input[name="fav"]:checked');
+            let bad = document.querySelector('input[name="bad"]:checked');
+            let other = document.querySelector("#other").checked ? "Tak" : "Nie";
+            
+            if (fav && bad) {
+                document.querySelector("#result").innerHTML = `Twoje preferencje:<br/>
+                                                                Lubisz kolor: ${fav.value}<br/>
+                                                                Nie lubisz koloru: ${bad.value}</br>
+                                                                Lubisz inne kolory: ${other}</br>`;
+            } else {
+                document.querySelector("#result").innerHTML = "Proszę wybrać ulubiony kolor i kolor, którego nie lubisz.";
+            }
+        }
+
+        function erase() {
+            document.querySelector("#result").innerHTML = "";
+            document.querySelector('input[name="fav"]:checked').checked = false;
+            document.querySelector('input[name="bad"]:checked').checked = false;
+            document.querySelector("#other").checked = false;
+        }
+    </script>
+</body>
+</html>

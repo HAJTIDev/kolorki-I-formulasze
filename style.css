@@ -1,0 +1,12 @@
+section
+{
+    float:left;
+    margin: 10px;
+}
+button
+{
+    float:left;
+}
+body,button {
+    font-family: comic sans ms;
+}
